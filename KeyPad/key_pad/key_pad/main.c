@@ -12,16 +12,19 @@ int main(void)
 {
     /* Replace with your application code */
 	
-	DDRJ = 11111000;
+	DDRJ = 0b00010111;
 	DDRH = 0xff;
     while (1) 
     {
-		PINJ &= ~(1 << 2);
+		PORTJ = 0b11111011;
 		
-		if (PORTJ & 0b00000100)
+		if ((PINJ & 0b00001000) == 0x0)
 		{
-			PORTH &= ~(1 << PH0);
+			PORTH |= (1 << PH1);
+		}else
+		{
+			PORTH &= ~(1 << PH1);
 		}
-    }
+		}
 }
 
